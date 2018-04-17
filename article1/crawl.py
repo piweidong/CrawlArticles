@@ -57,7 +57,7 @@ def _post_crawl(url, headers, post_payload):
     :return:
     '''
 
-    r = requests.get(url, headers=headers, data=post_payload)
+    r = requests.post(url, headers=headers, data=post_payload)
     if r.status_code != 200: # 如果返回不是200, 报异常
         raise Exception(r.status_code)
 
@@ -132,5 +132,5 @@ if __name__ == '__main__':
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
         }
         # get_payload = {}  # 没有参数
-        html = _crawl('get', url, headers)  # 下一篇文章会将解析
+        html = _crawl('get', url, headers)  # 下一篇文章会网页源码解析
         print(html)
