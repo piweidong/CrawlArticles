@@ -124,7 +124,7 @@ if __name__ == '__main__':
             f.write(image_bytes)
 
     # 抓取详情页
-    for article in articles[5:]:
+    for article in articles:
         url = 'http://36kr.com/p/{}.html'.format(article['id'])
         print(url)
         headers = {
