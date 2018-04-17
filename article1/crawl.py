@@ -58,7 +58,7 @@ def _post_crawl(url, headers, post_payload):
     '''
 
     r = requests.post(url, headers=headers, data=post_payload)
-    if r.status_code != 200: # 如果返回不是200, 报异常
+    if r.status_code != 200:  # 如果返回不是200, 报异常
         raise Exception(r.status_code)
 
     content_type = r.headers['Content-Type']
