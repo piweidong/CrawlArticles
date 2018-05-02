@@ -21,7 +21,7 @@ def get_html_encode(content_type, page_raw):
         return encode_list[0]
 
 
-def _get_crawl(url, headers, get_payload):
+def _get_crawl(url, headers, get_payload, proxies, timeout):
     '''
     :param url: str, Request URL
     :param headers: dict, Request Headers
@@ -29,7 +29,7 @@ def _get_crawl(url, headers, get_payload):
     :return:
     '''
 
-    r = requests.get(url, headers=headers, params=get_payload)
+    r = requests.get(url, headers=headers, params=get_payload, proxies=proxies, timeout=timeout)
     if r.status_code != 200:  # 如果返回不是200, 报异常
         raise Exception(r.status_code)
 
@@ -49,7 +49,7 @@ def _get_crawl(url, headers, get_payload):
         return r.content
 
 
-def _post_crawl(url, headers, post_payload):
+def _post_crawl(url, headers, post_payload, proxies, timeout):
     '''
     :param url: str, Request URL
     :param headers: dict, Request Headers
@@ -57,7 +57,7 @@ def _post_crawl(url, headers, post_payload):
     :return:
     '''
 
-    r = requests.post(url, headers=headers, data=post_payload)
+    r = requests.post(url, headers=headers, data=post_payload, proxies=proxies, timeout=timeout)
     if r.status_code != 200:  # 如果返回不是200, 报异常
         raise Exception(r.status_code)
 
@@ -77,12 +77,12 @@ def _post_crawl(url, headers, post_payload):
         return r.content
 
 
-def _crawl(method, url, headers=None, payload=None):
+def _crawl(method, url, headers=None, payload=None, proxies=None, timeout=10):
     try:
         if method == 'get':
-            return _get_crawl(url, headers, payload)
+            return _get_crawl(url, headers, payload, proxies, timeout)
         elif method == 'post':
-            return _post_crawl(url, headers, payload)
+            return _post_crawl(url, headers, payload, proxies, timeout)
         else:
             raise Exception('method is wrong')
     except Exception as e:
