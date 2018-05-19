@@ -11,8 +11,8 @@ def login():
         'type': 'login',
         'bind': 'false',
         'needCaptcha': 'false',
-        'username': 'fanlitest221@163.com',
-        'password': 'a1234567!',
+        'username': 'xxx@163.com',  # 36kr 的用户名, 读者自己注册即可
+        'password': 'xxx',  # 36kr 的密码
         'ok_url': 'https://rong.36kr.com/list/detail&',
         'ktm_reghost': 'rong.36kr.com',
     }
@@ -56,25 +56,9 @@ def login_by_cookie():
     print(r.text)
 
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     # 模拟登陆，获取数据
     login()
 
     # 使用cookie登陆，获取数据
     login_by_cookie()
-
-    # 使用selenium+chrome登陆获取cookie
